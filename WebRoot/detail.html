@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 移动端视图 禁止屏幕缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>详情页</title>
+	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: "MicrosoftYaHei";
+		}
+		h1,h4{
+			font-weight: bold;
+		}
+		textarea{
+			resize: none;
+		}
+		#applicationForm{
+			/* border: 2px solid #000; */
+			overflow: hidden;
+			padding-bottom: 100px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+		.tabTitle{
+			text-align: center;
+		}
+		#detail tr{
+			height: 60px;
+		}
+		#detail tr td{
+			border: 1px solid #000;
+			text-align: center;
+			font-size: 20px;
+		}
+		#detail tr .left{
+			text-align: left;
+			text-indent: 2em;
+		}
+		#detail #photo img{
+			height: 240px;
+			width: 200px;
+		}
+		
+		#score{
+			padding-bottom: 30px;
+		}
+		#score label{
+			font-size: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div id="applicationForm" class="col-md-10 col-md-offset-1">
+		<h1 class="tabTitle center-block">自动化学院学生科协纳新报名表</h1>
+		<table id="detail" class="col-md-10 col-md-offset-1">
+			<tr>
+				<td id="name" class="col-md-2" style="font-weight: bold;">姓名</td>
+				<td id="nameVal" class="col-md-2"></td>
+				<td id="sex" class="col-md-2" style="font-weight: bold;">性别</td>
+				<td id="sexVal" class="col-md-2"></td>
+				<td rowspan="4" id="photo">
+					<!-- <img src="img/f5e58bb0a39708803bcb60f4bd503798.jpg" alt="photo"> -->
+				</td>
+			</tr>
+			<tr>
+				<td id="sno" class="col-md-2" style="font-weight: bold;">学号</td>
+				<td id="snoVal" class="col-md-2"></td>
+				<td id="college" class="col-md-2" style="font-weight: bold;">学院</td>
+				<td id="collegeVal" class="col-md-2"></td>
+			</tr>
+			<tr>
+				<td id="className" class="col-md-2" style="font-weight: bold;">行政班级</td>
+				<td id="classNameVal" class="col-md-2"></td>
+				<td id="pnum" class="col-md-2" style="font-weight: bold;">手机号</td>
+				<td id="pnumVal" class="col-md-2"></td>
+			</tr>
+			<tr>
+				<td id="depart1" class="col-md-2" style="font-weight: bold;">部门1</td>
+				<td id="depart1Val" class="col-md-2"></td>
+				<td id="depart2" class="col-md-2" style="font-weight: bold;">部门2</td>
+				<td id="depart2Val" class="col-md-2"></td>
+			</tr>
+			<tr>
+				<td id="room" class="col-md-2" style="font-weight: bold;">宿舍</td>
+				<td id="roomVal" class="col-md-2"></td>
+				<td id="reward" class="col-md-2" style="font-weight: bold;">获奖情况</td>
+				<td id="rewardVal" class="col-md-2" colspan="2"></td>
+			</tr>
+
+			<tr>
+				<td id="ques1" colspan="5">
+					<h4>个人简介（你可以从学习成绩、性格特点、爱好、特长等多方面进行简述）</h4>
+				</td>
+			</tr>
+			<tr>
+				<td id="ques1Val" colspan="5" class="left">
+					<p></p>
+				</td>
+			</tr>
+
+			<tr>
+				<td id="ques2" colspan="5">
+					<h4>你为什么选择科协？如果你是科协成员，你会做些什么？</h4>
+				</td>
+			</tr>
+			<tr>
+				<td id="ques2Val" colspan="5" class="left">
+					<p></p>
+				</td>
+			</tr>
+
+			<tr>
+				<td id="ques3" colspan="5">
+					<h4>有没有加入其他社团？有什么收获与体会？</h4>
+				</td>
+			</tr>
+			<tr>
+				<td id="ques3Val" colspan="5" class="left">
+					<p></p>
+				</td>
+			</tr>
+
+			<tr>
+				<td id="exper" colspan="5">
+					<h4>科技制作经验</h4>
+				</td>
+			</tr>
+			<tr>
+				<td id="experVal" colspan="5" class="left">
+					<p></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="score" class="col-md-8 col-md-offset-2">
+		<form class="form-horizontal">
+			<div class="form-group">
+		  		<label for="review" class="control-label">简要评价该同学(创新及动手能力，科技制作经验，技术特长，参赛经验，成绩及排名，性格等)</label>
+		  		<textarea rows="5" id="review" class="col-md-12"></textarea>
+		  	</div>
+		  	<button type="button" class="btn btn-success" id="save"> 保存 </button>
+		  	<button type="button" class="btn btn-danger" id="clear" style="float: right;"> 清除 </button>
+		</form>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		$(function(){
+			$(document).ready(function(){
+
+
+				//读取list页面传来的
+				var personInfo = load("tempPass");
+
+				//更新表格
+				updateTable(personInfo);
+				//保存评论
+				saveReview(personInfo);
+				//清除评论
+				clearReview(personInfo);
+			})
+		});
+
+		//根据传入对象渲染表格
+		function updateTable(obj){
+			for(var key in obj){
+				$("#"+key+"Val").html(obj[key]);
+			}
+			$("#photo").append("<img src='http://139.129.39.115/SignUp"+obj.photo +"' alt='photo'>");
+		}
+
+		//localStorage数据读取
+		function load(key){
+			if(window.localStorage.getItem(key)){
+				var str = window.localStorage.getItem(key),
+					obj = JSON.parse(str);
+				return obj;
+			}
+		}
+
+		//读取和保存评论
+		function saveReview(obj){
+			var storage = window.localStorage;
+			//如果在本地已有评论则取出显示在textarea中
+			if(storage.getItem(obj.sno)){
+				$("#review").html(storage.getItem(obj.sno));
+			}
+			//点击save按钮保存评论 会覆盖原评论
+			$("#save").click(function(){
+				storage.setItem(obj.sno,$("#review").val());
+				alert("保存成功");
+
+				storage.setItem('donePass',obj.sno);
+
+				//关闭窗口
+				window.close();
+			})
+		}
+
+		//清除该评论
+		function clearReview(obj){
+			var storage = window.localStorage;
+
+			$("#clear").click(function(){
+				var r=confirm("是否要清除该评论？");
+				if(r){
+					//清除评论框内容
+					$("#review").html("");
+					//清除localStorage缓存
+					storage.removeItem(obj.sno);
+
+					//修改已面试列表doneList
+					var doneListStr = storage.getItem("doneList");
+					if(doneListStr.indexOf(obj.sno+',') !== -1){
+						doneListStr=doneListStr.replace(obj.sno+',',"");
+					}else if(doneListStr.indexOf(','+obj.sno) !== -1){
+						doneListStr=doneListStr.replace(','+obj.sno,"");
+					}else{
+						doneListStr=doneListStr.replace(obj.sno,"");
+					}
+
+					//修改缓存中的doneList
+					storage.setItem('doneList',doneListStr);
+
+					//通过localStorage传递删除的学号给list页面
+					storage.setItem('clearPass',obj.sno);
+
+					alert("清除成功！");
+
+					//关闭窗口
+					window.close();
+				}
+			})
+		}
+	</script>
+</body>
+</html>

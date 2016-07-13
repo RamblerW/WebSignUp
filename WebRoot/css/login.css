@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+.login{
+	margin-top: 150px;
+}
+.form-signin{
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+input{
+	margin-bottom: 3px;
+}
+.btn{
+	margin-top:12px;
+}

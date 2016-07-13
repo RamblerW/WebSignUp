@@ -1,0 +1,68 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: url(../img/banner.jpg) no-repeat center center;
+	height: 100%;
+}
+body textarea{
+	resize: none;
+}
+.person{
+	background-color: #DDD;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	box-shadow: 0 0 20px 5px #FFF;
+}
+.tableTitle{
+	text-align: center;
+	margin-bottom: 20px;
+}
+form{
+	margin-bottom: 30px;
+}
+.quesLabel{
+	text-indent: 4em;
+}
+#submit{
+	margin-top: 50px;
+}
+.departmentInfo{
+	background: #2e6da4;
+	color:#FFF;
+	position:fixed;
+	top: 8px;
+	z-index:1;
+	height: 500px;
+	overflow-y: scroll;
+	display: none;
+}
+.departmentInfo h2{
+	text-align: center;
+}
+#closeBtn{
+	margin:20px auto;
+}
+#mask{
+	width: 100%;
+	height: 100%;
+	background: #000;
+	display: none; 
+	opacity: 0.6;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.mustMark{
+	color:red;
+}
+@media only screen and (max-width:780px){
+	#infoBtn{
+		margin-left: 1em;
+	}
+	.quesLabel{
+		text-indent: 0;
+		padding-left: 2em;
+	}
+}
